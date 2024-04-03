@@ -4,7 +4,7 @@ var configuration = app.Configuration;
 
 app.UseExceptionHandler("/error.html");
 
-if (configuration.GetValue<bool>("EnableDeveloperExceptions"))
+if (configuration.GetValue<bool>("FeatureToggles:DeveloperExceptions"))
 {
     app.UseDeveloperExceptionPage();
 }
