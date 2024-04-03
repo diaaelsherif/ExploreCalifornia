@@ -41,7 +41,7 @@ app.Use(async (context, next) =>
 //use Mvc
 app.UseMvc(routes =>
 {
-    routes.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");
+    routes.MapRoute("Default", "{controller=Home}/{action=Index}/{id:int?}");
 });
 
 //use wwwroot folder contents
