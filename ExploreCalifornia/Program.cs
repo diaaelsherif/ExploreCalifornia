@@ -1,10 +1,17 @@
+using ExploreCalifornia;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddTransient<FeatureToggles>(x => new FeatureToggles
+{
+    DeveloperExceptions = builder.Configuration.GetValue<bool>("FeatureToggles:DeveloperExceptions")
+});
+
 var app = builder.Build();
-var configuration = app.Configuration;
+var features = app.Services.GetRequiredService<FeatureToggles>();
 
 app.UseExceptionHandler("/error.html");
 
-if (configuration.GetValue<bool>("FeatureToggles:DeveloperExceptions"))
+if (features.DeveloperExceptions)
 {
     app.UseDeveloperExceptionPage();
 }
