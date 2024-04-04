@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 //add transient service - dependency injection
+builder.Services.AddTransient<FormattingService>();
+
 builder.Services.AddTransient<FeatureToggles>(x => new FeatureToggles
 {
     //copy configuration variable to the property
@@ -49,7 +51,7 @@ app.Use(async (context, next) =>
 //use Mvc
 app.UseMvc(routes =>
 {
-    routes.MapRoute("Default", "{controller=Home}/{action=Index}/{id:int?}");
+    routes.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");
 });
 
 //use wwwroot folder contents
