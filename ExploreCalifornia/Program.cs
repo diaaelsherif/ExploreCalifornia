@@ -1,4 +1,6 @@
 using ExploreCalifornia;
+using ExploreCalifornia.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,12 @@ builder.Services.AddTransient<FeatureToggles>(x => new FeatureToggles
 {
     //copy configuration variable to the property
     DeveloperExceptions = builder.Configuration.GetValue<bool>("FeatureToggles:DeveloperExceptions")
+});
+
+builder.Services.AddDbContext<BlogDataContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("BlogDataContext");
+    options.UseSqlServer(connectionString);
 });
 
 //add Mvc using legacy routing
