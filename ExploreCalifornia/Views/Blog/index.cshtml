@@ -1,3 +1,4 @@
+@model IEnumerable<ExploreCalifornia.Models.Post>
 @{
     Layout = "_Layout";
 }
@@ -9,5 +10,16 @@
 </p>
 
 <div class="blog-posts">
-    TODO: Blog posts will go here!
+    @foreach (var post in Model)
+    {
+        <article class="blog-post">
+            <h1>@post.Title</h1>
+            <div class="details">
+                Posted <span>@post.Posted</span> by <span>@post.Author</span>
+            </div>
+            <div class="content">
+                @post.Body
+            </div>
+        </article>
+    }
 </div>
