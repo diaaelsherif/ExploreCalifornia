@@ -11,8 +11,6 @@
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <script type="text/javascript" src="~/scripts/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="~/scripts/site.js"></script>
     <link href="/css/main.css" rel="stylesheet" type="text/css" media="screen, projection">
 </head>
 <body id="home" class="no-js">
@@ -59,6 +57,23 @@
                         <ul>
                             <li><a href="support.htm" title="need help?">Support</a></li>
                         </ul>
+                    </li>
+                    <li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <form id="logout" action="@Url.Action("Logout", "Account")" method="POST">
+                                <a href="javascript: $('#logout').submit()" class="last">
+                                    Logout
+                                    <br /><span class="tagline">@User.Identity.Name</span>
+                                </a>
+                            </form>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Login", "Account")" title="log in" class="last">
+                                Login
+                            </a>
+                        }
                     </li>
                 </ul>
             </nav>

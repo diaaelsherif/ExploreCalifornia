@@ -1,5 +1,6 @@
 using ExploreCalifornia;
 using ExploreCalifornia.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,15 @@ builder.Services.AddDbContext<BlogDataContext>(options =>
     var connectionString = builder.Configuration.GetConnectionString("BlogDataContext");
     options.UseSqlServer(connectionString);
 });
+
+builder.Services.AddDbContext<IdentityDataContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("IdentityDataContext");
+    options.UseSqlServer(connectionString);
+});
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<IdentityDataContext>();
 
 //add Mvc using legacy routing
 builder.Services.AddMvc((setupAction) =>
