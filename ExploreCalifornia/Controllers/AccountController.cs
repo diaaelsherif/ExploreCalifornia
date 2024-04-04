@@ -29,7 +29,7 @@ namespace ExploreCalifornia.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel login, string returnUrl = null)
+        public async Task<IActionResult> Login(LoginViewModel login, string? returnUrl = null)
         {
             if (!ModelState.IsValid)
             {

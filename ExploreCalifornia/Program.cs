@@ -37,11 +37,14 @@ builder.Services.AddMvc((setupAction) =>
 
 var app = builder.Build();
 
+//use authentication
+app.UseAuthentication();
+
 //use injected dependency
 var features = app.Services.GetRequiredService<FeatureToggles>();
 
+//exception handler
 app.UseExceptionHandler("/error.html");
-
 if (features.DeveloperExceptions)
 {
     app.UseDeveloperExceptionPage();
