@@ -19,7 +19,7 @@ namespace ExploreCalifornia.Controllers
         {
             var pageSize = 2;
             var totalPosts = _db.Posts.Count();
-            var totalPages = totalPosts / pageSize;
+            var totalPages = Math.Ceiling((double)totalPosts / pageSize);
             var previousPage = page - 1;
             var nextPage = page + 1;
 
@@ -62,7 +62,6 @@ namespace ExploreCalifornia.Controllers
             if (!ModelState.IsValid)
                 return View();
 
-            post.Author = User.Identity.Name;
             post.Posted = DateTime.Now;
 
             _db.Posts.Add(post);

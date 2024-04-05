@@ -22,6 +22,17 @@
         </p>
 
         <p>
+            <label asp-for="Author"></label>
+            @{
+                string author = User.Identity.Name;
+                int at_index = author.IndexOf('@');
+                if (at_index > 0) author = author.Substring(0, at_index);
+                <input asp-for="Author" value="@author" class="form-control" placeholder="Author name" readonly></input>
+            }
+            <span asp-validation-for="Author"></span>
+        </p>
+
+        <p>
             <button type="submit">Create Post</button>
         </p>
 

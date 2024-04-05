@@ -54,7 +54,7 @@ namespace ExploreCalifornia.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Logout(string returnUrl = null)
+        public async Task<IActionResult> Logout(string? returnUrl = null)
         {
             await _signInManager.SignOutAsync();
 

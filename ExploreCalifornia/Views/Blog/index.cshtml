@@ -27,4 +27,7 @@
     {
         @await Html.PartialAsync("_post", post)
     }
+    <p>
+        <a href="@Url.Action("Create", "Blog")">Create Post</a>
+    </p>
 </div>
